@@ -12,8 +12,8 @@
 - Change Variables and improve code
 
 - Manipulating Image:
-  - Rotate,
-  - Move,
+  - Rotate, (done)
+  - Move, 
   - Escalate,
   - Crop
 

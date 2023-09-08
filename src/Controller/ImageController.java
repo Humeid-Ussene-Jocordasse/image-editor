@@ -24,6 +24,7 @@ public class ImageController {
         this.isError = false;
     }
     
+    
     public BufferedImage rotate(BufferedImage image, int angleInInt) {
         int width = image.getWidth();
         int height = image.getHeight();
