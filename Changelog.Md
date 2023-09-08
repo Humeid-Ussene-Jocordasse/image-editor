@@ -8,4 +8,14 @@
 - Add image cropping with mouse
 - Improve crop image (Rename to Clip)
 - Improve Translate Image (Rename to Move Image)
-- Add dark mode
+- Add dark mode/ Light Mode
+- Change Variables and improve code
+
+- Manipulating Image:
+  - Rotate,
+  - Move,
+  - Escalate,
+  - Crop
+
+- Mostrar dimensoes da imagem
+- Add drop image here (not that much needed)

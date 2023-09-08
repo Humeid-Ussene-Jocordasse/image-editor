@@ -23,34 +23,29 @@ public class ImageController {
         this.error = null;
         this.isError = false;
     }
+    
+    public BufferedImage rotate(BufferedImage image, int angleInInt) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        double angleInRadians = Math.toRadians(angleInInt);
 
-    public BufferedImage rotate90(BufferedImage image, int direction) {
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
-        BufferedImage rotatedImage = new BufferedImage(imageHeight, imageWidth, image.getType());
+        int newWidth = (int) Math.ceil(width * Math.abs(Math.cos(angleInRadians)) + height * Math.abs(Math.sin(angleInRadians)));
+        int newHeight = (int) Math.ceil(width * Math.abs(Math.sin(angleInRadians)) + height * Math.abs(Math.cos(angleInRadians)));
 
-        for (int y = 0; y < imageHeight; y++) {
-            for (int x = 0; x < imageWidth; x++) {
-                if (direction == ROTATE_LEFT) {
-                    rotatedImage.setRGB(y, (imageWidth - 1) - x, image.getRGB(x, y));
-                } else {
-                    rotatedImage.setRGB((imageHeight - 1) - y, x, image.getRGB(x, y));
-                }
-            }
-        }
-        return rotatedImage;
-    }
+        BufferedImage rotatedImage = new BufferedImage(newWidth, newHeight, image.getType());
 
-    public BufferedImage rotate180(BufferedImage image) {
-        int imageWidth = image.getWidth();
-        int imageHeight = image.getHeight();
-        BufferedImage rotatedImage = new BufferedImage(imageWidth, imageHeight, image.getType());
+            // Get the Graphics2D object to perform the rotation
+            Graphics2D g2d = rotatedImage.createGraphics();
 
-        for (int y = 0; y < imageHeight; y++) {
-            for (int x = 0; x < imageWidth; x++) {
-                rotatedImage.setRGB((imageWidth - 1) - x, (imageHeight - 1) - y, image.getRGB(x, y));
-            }
-        }
+            // Set the rotation angle
+            g2d.rotate(angleInRadians, newWidth / 2, newHeight / 2);
+
+            // Draw the original image onto the rotated image
+            g2d.drawImage(image, (newWidth - width) / 2, (newHeight - height) / 2, null);
+
+            // Dispose of the Graphics2D object
+            g2d.dispose();
+
         return rotatedImage;
     }
 

@@ -15,6 +15,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
@@ -31,6 +32,8 @@ public class Editor extends javax.swing.JFrame {
     PlaceHolder scaleHeigthHolder;
     PlaceHolder translateXHolder;
     PlaceHolder translateYHolder;
+    
+    SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, -360, 100, 1); 
 
     /**
      * Creates new form Editor
@@ -62,8 +65,6 @@ public class Editor extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        btnRotate90Left = new javax.swing.JButton();
-        btnRotate90Right = new javax.swing.JButton();
         btnCrop = new javax.swing.JButton();
         cropWidth = new javax.swing.JTextField();
         cropHeigth = new javax.swing.JTextField();
@@ -78,45 +79,25 @@ public class Editor extends javax.swing.JFrame {
         btnRotate180 = new javax.swing.JButton();
         btnUploadImage = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        currentWidth = new javax.swing.JLabel();
-        currentHeight = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         translateX = new javax.swing.JTextField();
         translateY = new javax.swing.JTextField();
         btnTranslate = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
         jScrollPane1 = new javax.swing.JScrollPane();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(21, 23, 24));
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel2.setBackground(new java.awt.Color(255, 51, 51));
+        jPanel2.setBackground(new java.awt.Color(21, 23, 24));
 
         jPanel1.setBackground(new java.awt.Color(35, 38, 39));
+        jPanel1.setPreferredSize(new java.awt.Dimension(228, 760));
 
-        btnRotate90Left.setText("90° Left");
-        btnRotate90Left.setMaximumSize(new java.awt.Dimension(80, 25));
-        btnRotate90Left.setMinimumSize(new java.awt.Dimension(80, 25));
-        btnRotate90Left.setPreferredSize(new java.awt.Dimension(80, 25));
-        btnRotate90Left.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRotate90LeftActionPerformed(evt);
-            }
-        });
-
-        btnRotate90Right.setText("90° Right");
-        btnRotate90Right.setMaximumSize(new java.awt.Dimension(80, 25));
-        btnRotate90Right.setMinimumSize(new java.awt.Dimension(80, 25));
-        btnRotate90Right.setPreferredSize(new java.awt.Dimension(80, 25));
-        btnRotate90Right.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRotate90RightActionPerformed(evt);
-            }
-        });
-
-        btnCrop.setText("Crop");
+        btnCrop.setText("Cortar Imagem");
         btnCrop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCropActionPerformed(evt);
@@ -124,6 +105,11 @@ public class Editor extends javax.swing.JFrame {
         });
 
         cropWidth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cropWidth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cropWidthActionPerformed(evt);
+            }
+        });
 
         cropHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -131,7 +117,7 @@ public class Editor extends javax.swing.JFrame {
 
         cropY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        btnScale.setText("Scale");
+        btnScale.setText("Escalar");
         btnScale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnScaleActionPerformed(evt);
@@ -143,44 +129,44 @@ public class Editor extends javax.swing.JFrame {
         scaleHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TRANSLATE IMAGE");
+        jLabel1.setText("Mover Imagem");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("CROP IMAGE");
+        jLabel2.setText("Cortar Imagem");
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("ROTATE IMAGE");
+        jLabel3.setText("Girar Imagem");
 
-        btnRotate180.setText("180°");
+        btnRotate180.setText("Girar");
         btnRotate180.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRotate180ActionPerformed(evt);
             }
         });
 
-        btnUploadImage.setText("Upload Imagem");
+        btnUploadImage.setBackground(new java.awt.Color(242, 242, 242));
+        btnUploadImage.setText("Carregar Imagem");
         btnUploadImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUploadImageActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Picassadas");
 
-        currentWidth.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        currentWidth.setText("Width(X)");
-
-        currentHeight.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        currentHeight.setText("Height(x)");
-
         btnSave.setBackground(new java.awt.Color(38, 86, 186));
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave.setText("SAVE IMAGE");
+        btnSave.setText("Salvar");
         btnSave.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnSave.setContentAreaFilled(false);
         btnSave.setOpaque(true);
@@ -194,7 +180,7 @@ public class Editor extends javax.swing.JFrame {
 
         translateY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        btnTranslate.setText("Translate");
+        btnTranslate.setText("Mover Imagem");
         btnTranslate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTranslateActionPerformed(evt);
@@ -202,52 +188,56 @@ public class Editor extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("SCALE IMAGE");
+        jLabel5.setText("Escalar Imagem");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTranslate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRotate180, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRotate90Left, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRotate90Right, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(scaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(scaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(currentWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(currentHeight, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cropX, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cropY))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(scaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(scaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 2, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(translateX, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(translateY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cropX, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cropY, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
-                    .addComponent(btnCrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(translateY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,24 +246,18 @@ public class Editor extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(currentWidth)
-                    .addComponent(currentHeight))
-                .addGap(18, 18, 18)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRotate90Left, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRotate90Right, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRotate180, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cropX)
@@ -296,12 +280,13 @@ public class Editor extends javax.swing.JFrame {
                     .addComponent(translateY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTranslate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
 
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imageLabel.setPreferredSize(new java.awt.Dimension(843, 698));
         jScrollPane1.setViewportView(imageLabel);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -309,26 +294,22 @@ public class Editor extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(732, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(552, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(390, Short.MAX_VALUE)))
+                .addContainerGap(16, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         getContentPane().add(jPanel2);
@@ -336,115 +317,29 @@ public class Editor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRotate90LeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotate90LeftActionPerformed
+    private void btnTranslateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranslateActionPerformed
         if (imageUploaded == null) {
             return;
         }
 
-        imageUploaded = imageController.rotate90(imageUploaded, ImageController.ROTATE_LEFT);
-        ImageIcon icon = new ImageIcon(imageUploaded);
-        imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnRotate90LeftActionPerformed
-
-    private void btnUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadImageActionPerformed
-        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        fileChooser.setAcceptAllFileFilterUsed(false);
-        fileChooser.setDialogTitle("Select Image");
-        FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only images", "png", "jpg", "jpeg");
-        fileChooser.addChoosableFileFilter(restrict);
-
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                imageUploaded = ImageIO.read(fileChooser.getSelectedFile().getAbsoluteFile());
-                fileUploaded = fileChooser.getSelectedFile().getAbsoluteFile();
-            } catch (IOException ex) {
-                Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
-            currentWidth.setText("Width(" + imageUploaded.getWidth() + ")");
-            ImageIcon icon = new ImageIcon(imageUploaded);
-            imageLabel.setIcon(icon);
-
-        }
-    }//GEN-LAST:event_btnUploadImageActionPerformed
-
-    private void btnRotate90RightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotate90RightActionPerformed
-        if (imageUploaded == null) {
+        if (translateX.getText().equals(translateXHolder.getTextoHolder()) || translateY.getText().equals(translateYHolder.getTextoHolder())) {
             return;
         }
 
-        imageUploaded = imageController.rotate90(imageUploaded, ImageController.ROTATE_RIGHT);
-        ImageIcon icon = new ImageIcon(imageUploaded);
-        imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnRotate90RightActionPerformed
-
-    private void btnRotate180ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotate180ActionPerformed
-        if (imageUploaded == null) {
+        if (translateX.getText().isEmpty() || translateY.getText().isEmpty()) {
             return;
         }
 
-        imageUploaded = imageController.rotate180(imageUploaded);
-        ImageIcon icon = new ImageIcon(imageUploaded);
-        imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnRotate180ActionPerformed
-
-    private void btnCropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCropActionPerformed
-        if (imageUploaded == null) {
-            return;
-        }
-
-        if (cropX.getText().equals(cropXHolder.getTextoHolder())
-                || cropY.getText().equals(cropYHolder.getTextoHolder())
-                || cropWidth.getText().equals(cropWidthHolder.getTextoHolder())
-                || cropHeigth.getText().equals(cropHeigthHolder.getTextoHolder())) {
-            return;
-        }
-
-        if (cropX.getText().isEmpty()
-                || cropY.getText().isEmpty()
-                || cropWidth.getText().isEmpty()
-                || cropHeigth.getText().isEmpty()) {
-            return;
-        }
-
-        imageUploaded = imageController.crop(
-                imageUploaded,
-                Integer.parseInt(cropX.getText()),
-                Integer.parseInt(cropY.getText()),
-                Integer.parseInt(cropWidth.getText()),
-                Integer.parseInt(cropHeigth.getText())
+        imageUploaded = imageController.translate(
+            imageUploaded,
+            Integer.parseInt(translateX.getText()),
+            Integer.parseInt(translateY.getText()),
+            imageLabel.getWidth(),
+            imageLabel.getHeight()
         );
-
-        currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
-        currentWidth.setText("Width(" + imageUploaded.getWidth() + ")");
         ImageIcon icon = new ImageIcon(imageUploaded);
         imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnCropActionPerformed
-
-    private void btnScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScaleActionPerformed
-        if (imageUploaded == null) {
-            return;
-        }
-
-        if (scaleWidth.getText().equals(scaleWidthHolder.getTextoHolder()) || scaleHeigth.getText().equals(scaleHeigthHolder.getTextoHolder())) {
-            return;
-        }
-
-        if (scaleWidth.getText().isEmpty() || scaleHeigth.getText().isEmpty()) {
-            return;
-        }
-
-        imageUploaded = imageController.scale(
-                imageUploaded,
-                Integer.parseInt(scaleWidth.getText()),
-                Integer.parseInt(scaleHeigth.getText())
-        );
-        currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
-        currentWidth.setText("Width(" + imageUploaded.getWidth() + ")");
-        ImageIcon icon = new ImageIcon(imageUploaded);
-        imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnScaleActionPerformed
+    }//GEN-LAST:event_btnTranslateActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (fileUploaded == null || imageUploaded == null) {
@@ -471,29 +366,95 @@ public class Editor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnTranslateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranslateActionPerformed
+    private void btnUploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadImageActionPerformed
+        JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        fileChooser.setDialogTitle("Select Image");
+        FileNameExtensionFilter restrict = new FileNameExtensionFilter("Only images", "png", "jpg", "jpeg");
+        fileChooser.addChoosableFileFilter(restrict);
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                imageUploaded = ImageIO.read(fileChooser.getSelectedFile().getAbsoluteFile());
+                fileUploaded = fileChooser.getSelectedFile().getAbsoluteFile();
+            } catch (IOException ex) {
+                Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+//            currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
+            ImageIcon icon = new ImageIcon(imageUploaded);
+            imageLabel.setIcon(icon);
+
+        }
+    }//GEN-LAST:event_btnUploadImageActionPerformed
+
+    private void btnRotate180ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotate180ActionPerformed
+        if (imageUploaded == null) {
+            return;
+        }
+        imageUploaded = imageController.rotate(imageUploaded, (int)rotatingDegreesInCelcius.getValue());
+        ImageIcon icon = new ImageIcon(imageUploaded);
+        imageLabel.setIcon(icon);
+    }//GEN-LAST:event_btnRotate180ActionPerformed
+
+    private void btnScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScaleActionPerformed
         if (imageUploaded == null) {
             return;
         }
 
-        if (translateX.getText().equals(translateXHolder.getTextoHolder()) || translateY.getText().equals(translateYHolder.getTextoHolder())) {
+        if (scaleWidth.getText().equals(scaleWidthHolder.getTextoHolder()) || scaleHeigth.getText().equals(scaleHeigthHolder.getTextoHolder())) {
             return;
         }
 
-        if (translateX.getText().isEmpty() || translateY.getText().isEmpty()) {
+        if (scaleWidth.getText().isEmpty() || scaleHeigth.getText().isEmpty()) {
             return;
         }
 
-        imageUploaded = imageController.translate(
-                imageUploaded,
-                Integer.parseInt(translateX.getText()),
-                Integer.parseInt(translateY.getText()),
-                imageLabel.getWidth(),
-                imageLabel.getHeight()
+        imageUploaded = imageController.scale(
+            imageUploaded,
+            Integer.parseInt(scaleWidth.getText()),
+            Integer.parseInt(scaleHeigth.getText())
         );
+//        currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
         ImageIcon icon = new ImageIcon(imageUploaded);
         imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnTranslateActionPerformed
+    }//GEN-LAST:event_btnScaleActionPerformed
+
+    private void btnCropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCropActionPerformed
+        if (imageUploaded == null) {
+            return;
+        }
+
+        if (cropX.getText().equals(cropXHolder.getTextoHolder())
+            || cropY.getText().equals(cropYHolder.getTextoHolder())
+            || cropWidth.getText().equals(cropWidthHolder.getTextoHolder())
+            || cropHeigth.getText().equals(cropHeigthHolder.getTextoHolder())) {
+            return;
+        }
+
+        if (cropX.getText().isEmpty()
+            || cropY.getText().isEmpty()
+            || cropWidth.getText().isEmpty()
+            || cropHeigth.getText().isEmpty()) {
+            return;
+        }
+
+        imageUploaded = imageController.crop(
+            imageUploaded,
+            Integer.parseInt(cropX.getText()),
+            Integer.parseInt(cropY.getText()),
+            Integer.parseInt(cropWidth.getText()),
+            Integer.parseInt(cropHeigth.getText())
+        );
+
+//        currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
+        ImageIcon icon = new ImageIcon(imageUploaded);
+        imageLabel.setIcon(icon);
+    }//GEN-LAST:event_btnCropActionPerformed
+
+    private void cropWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropWidthActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cropWidthActionPerformed
 
     /**
      * @param args the command line arguments
@@ -517,8 +478,6 @@ public class Editor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrop;
     private javax.swing.JButton btnRotate180;
-    private javax.swing.JButton btnRotate90Left;
-    private javax.swing.JButton btnRotate90Right;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnScale;
     private javax.swing.JButton btnTranslate;
@@ -527,8 +486,6 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JTextField cropWidth;
     private javax.swing.JTextField cropX;
     private javax.swing.JTextField cropY;
-    private javax.swing.JLabel currentHeight;
-    private javax.swing.JLabel currentWidth;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -538,6 +495,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner rotatingDegreesInCelcius;
     private javax.swing.JTextField scaleHeigth;
     private javax.swing.JTextField scaleWidth;
     private javax.swing.JTextField translateX;
