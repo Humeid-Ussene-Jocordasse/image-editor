@@ -33,7 +33,7 @@ public class ImageController {
         int newWidth = (int) Math.ceil(width * Math.abs(Math.cos(angleInRadians)) + height * Math.abs(Math.sin(angleInRadians)));
         int newHeight = (int) Math.ceil(width * Math.abs(Math.sin(angleInRadians)) + height * Math.abs(Math.cos(angleInRadians)));
 
-        BufferedImage rotatedImage = new BufferedImage(newWidth, newHeight, image.getType());
+        BufferedImage rotatedImage = new BufferedImage(newWidth, newHeight,  BufferedImage.TYPE_INT_ARGB);
 
             // Get the Graphics2D object to perform the rotation
             Graphics2D g2d = rotatedImage.createGraphics();
@@ -77,13 +77,28 @@ public class ImageController {
             this.error = "O valor de y é maior que a altura da imagem.";
             return originalImage;
         }
+        
+        
+        
+//             Update the position based on the speed
+//            x += xSpeed;
+//            y += ySpeed;
+//
+//            // Check for boundary collisions (adjust as needed)
+//            if (x < 0 || x + image.getWidth() > getWidth()) {
+//                xSpeed *= -1; // Reverse direction on collision
+//            }
+//            if (y < 0 || y + image.getHeight() > getHeight()) {
+//                ySpeed *= -1; // Reverse direction on collision
+//            }
+        
+        
 
-        BufferedImage resizedImage = new BufferedImage(width, height, originalImage.getType());
-        Graphics2D graphics2D = resizedImage.createGraphics();
+        BufferedImage movedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics2D = movedImage.createGraphics();
         graphics2D.drawImage(originalImage, x, y, null);
-        graphics2D.setBackground(Color.LIGHT_GRAY);
         graphics2D.dispose();
-        return resizedImage;
+        return movedImage;
     }
 
     public BufferedImage crop(BufferedImage image, int x, int y, int width, int height) {

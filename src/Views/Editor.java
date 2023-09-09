@@ -4,6 +4,7 @@ import Controller.ImageController;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -33,7 +35,7 @@ public class Editor extends javax.swing.JFrame {
     PlaceHolder translateXHolder;
     PlaceHolder translateYHolder;
     
-    SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, -360, 100, 1); 
+    SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, -360, 360, 1); 
 
     /**
      * Creates new form Editor
@@ -76,7 +78,7 @@ public class Editor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnRotate180 = new javax.swing.JButton();
+        btnRotate = new javax.swing.JButton();
         btnUploadImage = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
@@ -85,7 +87,7 @@ public class Editor extends javax.swing.JFrame {
         btnTranslate = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPanel = new javax.swing.JScrollPane();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,11 +107,6 @@ public class Editor extends javax.swing.JFrame {
         });
 
         cropWidth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        cropWidth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cropWidthActionPerformed(evt);
-            }
-        });
 
         cropHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -144,10 +141,10 @@ public class Editor extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Girar Imagem");
 
-        btnRotate180.setText("Girar");
-        btnRotate180.addActionListener(new java.awt.event.ActionListener() {
+        btnRotate.setText("Girar");
+        btnRotate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRotate180ActionPerformed(evt);
+                btnRotateActionPerformed(evt);
             }
         });
 
@@ -201,7 +198,7 @@ public class Editor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTranslate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRotate180, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,7 +248,7 @@ public class Editor extends javax.swing.JFrame {
                 .addGap(11, 11, 11)
                 .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRotate180, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRotate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -286,17 +283,29 @@ public class Editor extends javax.swing.JFrame {
         );
 
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel.setPreferredSize(new java.awt.Dimension(843, 698));
-        jScrollPane1.setViewportView(imageLabel);
+        imageLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                imageLabelMouseDragged(evt);
+            }
+        });
+        imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                imageLabelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                imageLabelMouseReleased(evt);
+            }
+        });
+        scrollPanel.setViewportView(imageLabel);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -305,11 +314,11 @@ public class Editor extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         getContentPane().add(jPanel2);
@@ -330,13 +339,14 @@ public class Editor extends javax.swing.JFrame {
             return;
         }
 
-        imageUploaded = imageController.translate(
-            imageUploaded,
-            Integer.parseInt(translateX.getText()),
-            Integer.parseInt(translateY.getText()),
-            imageLabel.getWidth(),
-            imageLabel.getHeight()
-        );
+//        imageUploaded = imageController.translate(
+//            imageUploaded,
+//            Integer.parseInt(translateX.getText()),
+//            Integer.parseInt(translateY.getText()),
+//            imageLabel.getWidth(),
+//            imageLabel.getHeight()
+//        );
+
         ImageIcon icon = new ImageIcon(imageUploaded);
         imageLabel.setIcon(icon);
     }//GEN-LAST:event_btnTranslateActionPerformed
@@ -388,14 +398,14 @@ public class Editor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUploadImageActionPerformed
 
-    private void btnRotate180ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotate180ActionPerformed
+    private void btnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRotateActionPerformed
         if (imageUploaded == null) {
             return;
         }
         imageUploaded = imageController.rotate(imageUploaded, (int)rotatingDegreesInCelcius.getValue());
         ImageIcon icon = new ImageIcon(imageUploaded);
         imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnRotate180ActionPerformed
+    }//GEN-LAST:event_btnRotateActionPerformed
 
     private void btnScaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScaleActionPerformed
         if (imageUploaded == null) {
@@ -452,9 +462,63 @@ public class Editor extends javax.swing.JFrame {
         imageLabel.setIcon(icon);
     }//GEN-LAST:event_btnCropActionPerformed
 
-    private void cropWidthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropWidthActionPerformed
+    private void imageLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_cropWidthActionPerformed
+        System.out.println("Mouse_Released");
+        endX = evt.getX();
+        endY = evt.getY();
+        isDragging = false;
+
+        // Calculate the crop region and create a cropped image
+        int width = Math.abs(endX - startX);
+        int height = Math.abs(endY - startY);
+        int x = Math.min(startX, endX);
+        int y = Math.min(startY, endY);
+
+        if (width > 0 && height > 0) {
+            //                        croppedImage = originalImage.get  Subimage(x, y, width, height);
+            repaint(); // Repaint the panel to display the cropped region
+        }
+
+    }//GEN-LAST:event_imageLabelMouseReleased
+
+    private void imageLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMousePressed
+        // TODO add your handling code here:
+        System.out.println("Image_Pressed");
+        startX = evt.getX();
+        startY = evt.getY();
+        isDragging = true;
+    }//GEN-LAST:event_imageLabelMousePressed
+
+    private void imageLabelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseDragged
+        // TODO add your handling code here:
+        System.out.println("Image_Dragged");
+        if (isDragging) {
+            endX = evt.getX();
+            endY = evt.getY();
+            imageLabel.paint(paintComponent(imageLabel.getGraphics()));
+
+        }
+    }//GEN-LAST:event_imageLabelMouseDragged
+
+    
+        private int startX, startY, endX, endY;
+        private boolean isDragging = false;
+        
+    
+            protected Graphics paintComponent(Graphics g) {
+                if (isDragging) {
+                    // Draw a selection rectangle while dragging
+                    int width = Math.abs(endX - startX);
+                    int height = Math.abs(endY - startY);
+                    int x = Math.min(startX, endX);
+                    int y = Math.min(startY, endY);
+                    g.setColor(Color.RED);
+                    g.drawRect(x, y, width, height);
+                  
+                } 
+                return g;
+        }
 
     /**
      * @param args the command line arguments
@@ -477,7 +541,7 @@ public class Editor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrop;
-    private javax.swing.JButton btnRotate180;
+    private javax.swing.JButton btnRotate;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnScale;
     private javax.swing.JButton btnTranslate;
@@ -494,10 +558,10 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner rotatingDegreesInCelcius;
     private javax.swing.JTextField scaleHeigth;
     private javax.swing.JTextField scaleWidth;
+    private javax.swing.JScrollPane scrollPanel;
     private javax.swing.JTextField translateX;
     private javax.swing.JTextField translateY;
     // End of variables declaration//GEN-END:variables
