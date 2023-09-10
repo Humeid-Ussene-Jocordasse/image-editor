@@ -118,7 +118,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnTranslate" max="32767" attributes="0"/>
+                          <Component id="btnMove" max="32767" attributes="0"/>
                           <Component id="lbRotateImage" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnRotate" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnScale" alignment="0" max="32767" attributes="0"/>
@@ -214,7 +214,7 @@
                           <Component id="tfTranslateY" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnTranslate" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="btnMove" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace pref="27" max="32767" attributes="0"/>
                       <Component id="btnSave" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -373,12 +373,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTranslateYActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnTranslate">
+            <Component class="javax.swing.JButton" name="btnMove">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mover Imagem"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTranslateActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoveActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbScalateImage">

@@ -1,6 +1,6 @@
 package Views;
 
-import Controller.ImageController;
+import Controller.ImageManipulator;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,13 +15,14 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
-public class Editor extends javax.swing.JFrame {
+public class ImageEditor extends javax.swing.JFrame {
 
-    ImageController imageController;
+    ImageManipulator imageController;
     File fileUploaded;
     BufferedImage imageUploaded;
      BufferedImage modeImage ;
@@ -40,9 +41,9 @@ public class Editor extends javax.swing.JFrame {
     /**
      * Creates new form Editor
      */
-    public Editor() {
+    public ImageEditor() {
         initComponents();
-        imageController = new ImageController();
+        imageController = new ImageManipulator();
         fileUploaded = null;
         imageUploaded = null;
 
@@ -59,7 +60,7 @@ public class Editor extends javax.swing.JFrame {
              modeImage = ImageIO.read( new File("/Users/humeidjocordasse/experiments/dark-theme.png"));
 
         } catch (IOException ex) {
-            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImageEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
                ImageIcon icon = new ImageIcon(modeImage);
 //               btnMode.setIcon(icon);
@@ -93,7 +94,7 @@ public class Editor extends javax.swing.JFrame {
         btnSave = new javax.swing.JButton();
         tfTranslateX = new javax.swing.JTextField();
         tfTranslateY = new javax.swing.JTextField();
-        btnTranslate = new javax.swing.JButton();
+        btnMove = new javax.swing.JButton();
         lbScalateImage = new javax.swing.JLabel();
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
         scrollPanel = new javax.swing.JScrollPane();
@@ -196,10 +197,10 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        btnTranslate.setText("Mover Imagem");
-        btnTranslate.addActionListener(new java.awt.event.ActionListener() {
+        btnMove.setText("Mover Imagem");
+        btnMove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTranslateActionPerformed(evt);
+                btnMoveActionPerformed(evt);
             }
         });
 
@@ -215,7 +216,7 @@ public class Editor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNavBarLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTranslate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbRotateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -295,7 +296,7 @@ public class Editor extends javax.swing.JFrame {
                     .addComponent(tfTranslateX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfTranslateY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTranslate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -385,7 +386,7 @@ public class Editor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTranslateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTranslateActionPerformed
+    private void btnMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoveActionPerformed
         if (imageUploaded == null) {
             return;
         }
@@ -397,18 +398,20 @@ public class Editor extends javax.swing.JFrame {
         if (tfTranslateX.getText().isEmpty() || tfTranslateY.getText().isEmpty()) {
             return;
         }
+        
+        int locationX = imageLabel.getLocation().x + Integer.parseInt(tfTranslateX.getText());
+        int locationY = imageLabel.getLocation().y + Integer.parseInt(tfTranslateY.getText());
 
-//        imageUploaded = imageController.translate(
-//            imageUploaded,
-//            Integer.parseInt(translateX.getText()),
-//            Integer.parseInt(translateY.getText()),
-//            imageLabel.getWidth(),
-//            imageLabel.getHeight()
-//        );
-
+        imageLabel.setLocation(locationX, locationY);
+        
+        
+        lbY.setText("y = " + imageUploaded.getHeight());
+        lbX.setText("x = " + imageUploaded.getWidth());
+        
         ImageIcon icon = new ImageIcon(imageUploaded);
         imageLabel.setIcon(icon);
-    }//GEN-LAST:event_btnTranslateActionPerformed
+
+    }//GEN-LAST:event_btnMoveActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (fileUploaded == null || imageUploaded == null) {
@@ -430,7 +433,7 @@ public class Editor extends javax.swing.JFrame {
 
                 ImageIO.write(imageUploaded, imageReader.getFormatName(), selectedFile);
             } catch (IOException ex) {
-                Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ImageEditor.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -448,7 +451,7 @@ public class Editor extends javax.swing.JFrame {
                 imageUploaded = ImageIO.read(fileChooser.getSelectedFile().getAbsoluteFile());
                 fileUploaded = fileChooser.getSelectedFile().getAbsoluteFile();
             } catch (IOException ex) {
-                Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ImageEditor.class.getName()).log(Level.SEVERE, null, ex);
             }
             lbY.setText("y = " + imageUploaded.getHeight());
             lbX.setText("x = " + imageUploaded.getWidth());
@@ -573,20 +576,20 @@ public class Editor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Editor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ImageEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
-            new Editor().setVisible(true);
+            new ImageEditor().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrop;
     private javax.swing.JToggleButton btnMode;
+    private javax.swing.JButton btnMove;
     private javax.swing.JButton btnRotate;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnScale;
-    private javax.swing.JButton btnTranslate;
     private javax.swing.JButton btnUploadImage;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel8;

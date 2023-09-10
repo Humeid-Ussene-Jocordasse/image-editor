@@ -7,13 +7,14 @@
 - Mostrar dimensoes da imagem (done)
 - Change Variables and improve code (done)
 - Rotate Image, (done)
-- Escalate
+- Escalate (done)
   - Add zooming loader (Deprecated)
 
 
-- Move,
-  - Rotate outside the pane
+- Move (Intermittent)
+  - Rotate outside the pane (not neeeded)
   - Add moving with mouse
+
 
 - Crop
    - Add image cropping with mouse
