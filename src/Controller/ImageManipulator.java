@@ -2,6 +2,7 @@ package Controller;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+
 public class ImageManipulator {
 
     public static final int ROTATE_LEFT = 1;

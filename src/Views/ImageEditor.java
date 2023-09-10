@@ -25,7 +25,6 @@ public class ImageEditor extends javax.swing.JFrame {
     ImageManipulator imageController;
     File fileUploaded;
     BufferedImage imageUploaded;
-     BufferedImage modeImage ;
     PlaceHolder cropHeigthHolder;
     PlaceHolder cropWidthHolder;
     PlaceHolder cropXHolder;
@@ -47,23 +46,15 @@ public class ImageEditor extends javax.swing.JFrame {
         fileUploaded = null;
         imageUploaded = null;
 
-        cropWidthHolder = new PlaceHolder(tfCropWidth, Color.GRAY, Color.BLACK, "Width", false, Font.SANS_SERIF, 13);
-        cropHeigthHolder = new PlaceHolder(tfCropHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
-        cropXHolder = new PlaceHolder(tfCropX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
-        cropYHolder = new PlaceHolder(tfCropY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
-        scaleWidthHolder = new PlaceHolder(tfScaleWidth, Color.GRAY, Color.BLACK, "Width", false, Font.SANS_SERIF, 13);
-        scaleHeigthHolder = new PlaceHolder(tfScaleHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
-        translateXHolder = new PlaceHolder(tfTranslateX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
-        translateYHolder = new PlaceHolder(tfTranslateY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
-        modeImage = null;
-        try {
-             modeImage = ImageIO.read( new File("/Users/humeidjocordasse/experiments/dark-theme.png"));
-
-        } catch (IOException ex) {
-            Logger.getLogger(ImageEditor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-               ImageIcon icon = new ImageIcon(modeImage);
-//               btnMode.setIcon(icon);
+        cropWidthHolder = new PlaceHolder(tfCropWidth, Color.GRAY, Color.BLACK, "Comp", false, Font.SANS_SERIF, 13);
+        cropHeigthHolder = new PlaceHolder(tfCropHeigth, Color.GRAY, Color.BLACK, "Alt", false, Font.SANS_SERIF, 13);
+        cropXHolder = new PlaceHolder(tfCropX, Color.GRAY, Color.BLACK, "X", false, Font.SANS_SERIF, 13);
+        cropYHolder = new PlaceHolder(tfCropY, Color.GRAY, Color.BLACK, "Y", false, Font.SANS_SERIF, 13);
+        scaleWidthHolder = new PlaceHolder(tfScaleWidth, Color.GRAY, Color.BLACK, "Comp", false, Font.SANS_SERIF, 13);
+        scaleHeigthHolder = new PlaceHolder(tfScaleHeigth, Color.GRAY, Color.BLACK, "Alt", false, Font.SANS_SERIF, 13);
+        translateXHolder = new PlaceHolder(tfTranslateX, Color.GRAY, Color.BLACK, "X", false, Font.SANS_SERIF, 13);
+        translateYHolder = new PlaceHolder(tfTranslateY, Color.GRAY, Color.BLACK, "Y", false, Font.SANS_SERIF, 13);
+     
     }
 
     /**
@@ -97,6 +88,7 @@ public class ImageEditor extends javax.swing.JFrame {
         btnMove = new javax.swing.JButton();
         lbScalateImage = new javax.swing.JLabel();
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
+        btnDrag = new javax.swing.JToggleButton();
         scrollPanel = new javax.swing.JScrollPane();
         imageLabel = new javax.swing.JLabel();
         lbDimensions = new javax.swing.JLabel();
@@ -209,6 +201,13 @@ public class ImageEditor extends javax.swing.JFrame {
         lbScalateImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbScalateImage.setText("Escalar Imagem");
 
+        btnDrag.setText("drag");
+        btnDrag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDragActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnNavBarLayout = new javax.swing.GroupLayout(pnNavBar);
         pnNavBar.setLayout(pnNavBarLayout);
         pnNavBarLayout.setHorizontalGroup(
@@ -216,45 +215,51 @@ public class ImageEditor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNavBarLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbRotateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbMoveImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbCropImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbScalateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnNavBarLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbRotateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnRotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbScalateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(pnNavBarLayout.createSequentialGroup()
-                                .addComponent(tfCropX, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfCropY))
-                            .addGroup(pnNavBarLayout.createSequentialGroup()
+                                .addGap(14, 14, 14)
                                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnNavBarLayout.createSequentialGroup()
-                                        .addComponent(tfCropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfCropX, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfCropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tfCropY))
                                     .addGroup(pnNavBarLayout.createSequentialGroup()
-                                        .addComponent(tfScaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tfScaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 2, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNavBarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(tfTranslateX, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfTranslateY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
+                                        .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(pnNavBarLayout.createSequentialGroup()
+                                                .addComponent(tfCropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tfCropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(pnNavBarLayout.createSequentialGroup()
+                                                .addComponent(tfScaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(tfScaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNavBarLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(tfTranslateX, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfTranslateY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbCropImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnScale, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(112, 112, 112))
+                    .addGroup(pnNavBarLayout.createSequentialGroup()
+                        .addComponent(lbMoveImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDrag)
+                        .addGap(107, 107, 107))))
             .addGroup(pnNavBarLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(63, 63, 63)
                 .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnNavBarLayout.setVerticalGroup(
             pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,41 +268,43 @@ public class ImageEditor extends javax.swing.JFrame {
                 .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(31, 31, 31)
                 .addComponent(lbRotateImage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRotate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(lbCropImage, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfCropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfCropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCropHeigth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tfCropX)
                     .addComponent(tfCropY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrop, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbScalateImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfScaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfScaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfScaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfScaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnScale, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(lbMoveImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
+                .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbMoveImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDrag))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfTranslateX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfTranslateY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMove, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -306,6 +313,16 @@ public class ImageEditor extends javax.swing.JFrame {
 
         imageLabel.setBackground(new java.awt.Color(30, 31, 31));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imageLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                imageLabelMouseDragged(evt);
+            }
+        });
+        imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                imageLabelMousePressed(evt);
+            }
+        });
         scrollPanel.setViewportView(imageLabel);
 
         lbDimensions.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -324,7 +341,7 @@ public class ImageEditor extends javax.swing.JFrame {
         lbY.setForeground(new java.awt.Color(255, 255, 255));
         lbY.setText("y = (Y)");
 
-        btnMode.setText("change-mode");
+        btnMode.setText("mode");
         btnMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModeActionPerformed(evt);
@@ -338,7 +355,7 @@ public class ImageEditor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnWindowPanelLayout.createSequentialGroup()
                 .addGroup(pnWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnWindowPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(53, Short.MAX_VALUE)
                         .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(pnWindowPanelLayout.createSequentialGroup()
@@ -355,7 +372,7 @@ public class ImageEditor extends javax.swing.JFrame {
                                 .addComponent(lbY)))
                         .addGap(433, 433, 433)
                         .addComponent(btnMode)
-                        .addGap(60, 60, 60)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(pnNavBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -562,6 +579,37 @@ public class ImageEditor extends javax.swing.JFrame {
     private void tfTranslateYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTranslateYActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTranslateYActionPerformed
+    int mouseX = 0;
+    int mouseY = 0;
+    private void imageLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMousePressed
+        // TODO add your handling code here:
+    mouseX = evt.getX();
+    mouseY = evt.getY();
+    }//GEN-LAST:event_imageLabelMousePressed
+
+
+    private void imageLabelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseDragged
+
+        if(btnDrag.isSelected()){
+        int xDifference = evt.getX() - mouseX;
+        int yDifference = evt.getY() - mouseY;
+        System.out.println("Dragged GetX "+(xDifference));
+        System.out.println("Dragged GetY "+(yDifference));
+        
+        int locationX = imageLabel.getLocation().x + xDifference;
+        int locationY = imageLabel.getLocation().y + yDifference;
+
+        imageLabel.setLocation(locationX, locationY);
+        
+        ImageIcon icon = new ImageIcon(imageUploaded);
+        imageLabel.setIcon(icon);
+        }
+        
+    }//GEN-LAST:event_imageLabelMouseDragged
+
+    private void btnDragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDragActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDragActionPerformed
 
 
     /**
@@ -585,6 +633,7 @@ public class ImageEditor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrop;
+    private javax.swing.JToggleButton btnDrag;
     private javax.swing.JToggleButton btnMode;
     private javax.swing.JButton btnMove;
     private javax.swing.JButton btnRotate;

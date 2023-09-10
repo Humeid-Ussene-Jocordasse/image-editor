@@ -42,7 +42,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="53" max="32767" attributes="0"/>
                           <Component id="scrollPanel" min="-2" pref="873" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                       </Group>
@@ -63,7 +63,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="433" max="-2" attributes="0"/>
                           <Component id="btnMode" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="pnNavBar" min="-2" max="-2" attributes="0"/>
@@ -118,55 +118,64 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnMove" max="32767" attributes="0"/>
-                          <Component id="lbRotateImage" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnRotate" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnScale" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbMoveImage" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lbCropImage" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnUploadImage" max="32767" attributes="0"/>
-                          <Component id="lbLogo" max="32767" attributes="0"/>
-                          <Component id="btnSave" max="32767" attributes="0"/>
-                          <Component id="lbScalateImage" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnCrop" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tfCropX" min="-2" pref="81" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="tfCropY" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="btnMove" max="32767" attributes="0"/>
+                                  <Component id="lbRotateImage" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnRotate" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnUploadImage" max="32767" attributes="0"/>
+                                  <Component id="lbLogo" max="32767" attributes="0"/>
+                                  <Component id="btnSave" max="32767" attributes="0"/>
+                                  <Component id="lbScalateImage" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnCrop" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
+                                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tfCropWidth" min="-2" pref="81" max="-2" attributes="0"/>
+                                              <Component id="tfCropX" min="-2" pref="81" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfCropHeigth" min="-2" pref="79" max="-2" attributes="0"/>
+                                              <Component id="tfCropY" max="32767" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="tfScaleWidth" min="-2" pref="82" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfScaleHeigth" min="-2" pref="78" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="tfCropWidth" min="-2" pref="81" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="tfCropHeigth" min="-2" pref="79" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="tfScaleWidth" min="-2" pref="82" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="tfScaleHeigth" min="-2" pref="78" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="tfTranslateX" min="-2" pref="82" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="tfTranslateY" min="-2" pref="78" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lbCropImage" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnScale" alignment="1" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="tfTranslateX" min="-2" pref="82" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="tfTranslateY" min="-2" pref="78" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lbMoveImage" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDrag" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Component id="rotatingDegreesInCelcius" min="-2" pref="88" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -177,18 +186,18 @@
                       <Component id="lbLogo" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="btnUploadImage" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="lbRotateImage" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                      <Component id="rotatingDegreesInCelcius" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rotatingDegreesInCelcius" min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnRotate" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="lbCropImage" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfCropHeigth" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="tfCropWidth" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="tfCropHeigth" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -197,25 +206,28 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCrop" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbScalateImage" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tfScaleWidth" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="tfScaleHeigth" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfScaleHeigth" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="tfScaleWidth" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnScale" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                      <Component id="lbMoveImage" min="-2" pref="32" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lbMoveImage" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="btnDrag" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="tfTranslateX" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="tfTranslateY" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnMove" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                       <Component id="btnSave" min="-2" pref="35" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
@@ -398,6 +410,14 @@
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(spinnerModel)"/>
               </AuxValues>
             </Component>
+            <Component class="javax.swing.JToggleButton" name="btnDrag">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="drag"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDragActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JScrollPane" name="scrollPanel">
@@ -416,6 +436,10 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="imageLabelMouseDragged"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="imageLabelMousePressed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -465,7 +489,7 @@
         </Component>
         <Component class="javax.swing.JToggleButton" name="btnMode">
           <Properties>
-            <Property name="text" type="java.lang.String" value="change-mode"/>
+            <Property name="text" type="java.lang.String" value="mode"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModeActionPerformed"/>

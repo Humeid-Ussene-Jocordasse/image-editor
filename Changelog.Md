@@ -9,15 +9,13 @@
 - Rotate Image, (done)
 - Escalate (done)
   - Add zooming loader (Deprecated)
-
-
 - Move (Intermittent)
   - Rotate outside the pane (not neeeded)
-  - Add moving with mouse
+  - Add moving with mouse (done)
 
-
-- Crop
-   - Add image cropping with mouse
+- Crop (itermitent)
+  - Crop Image without Mouse (done)
+  - Add image cropping with mouse ()
 
 
 
