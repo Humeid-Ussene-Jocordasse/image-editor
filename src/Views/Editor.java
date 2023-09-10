@@ -89,7 +89,7 @@ public class Editor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnRotate = new javax.swing.JButton();
         btnUploadImage = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        lbLogo = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         translateX = new javax.swing.JTextField();
         translateY = new javax.swing.JTextField();
@@ -98,10 +98,10 @@ public class Editor extends javax.swing.JFrame {
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
         scrollPanel = new javax.swing.JScrollPane();
         imageLabel = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        lbDimensions = new javax.swing.JLabel();
+        lbX = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lbY = new javax.swing.JLabel();
         btnMode = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -170,10 +170,10 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Picassadas");
+        lbLogo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lbLogo.setForeground(new java.awt.Color(255, 255, 255));
+        lbLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbLogo.setText("Picassadas");
 
         btnSave.setBackground(new java.awt.Color(38, 86, 186));
         btnSave.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,7 +217,7 @@ public class Editor extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -254,7 +254,7 @@ public class Editor extends javax.swing.JFrame {
             pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnNavBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
@@ -299,21 +299,21 @@ public class Editor extends javax.swing.JFrame {
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scrollPanel.setViewportView(imageLabel);
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Dimensões:");
+        lbDimensions.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lbDimensions.setForeground(new java.awt.Color(255, 255, 255));
+        lbDimensions.setText("Dimensões:");
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("x = (X)");
+        lbX.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lbX.setForeground(new java.awt.Color(255, 255, 255));
+        lbX.setText("x = (X)");
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("x = (X)");
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("y = (Y)");
+        lbY.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        lbY.setForeground(new java.awt.Color(255, 255, 255));
+        lbY.setText("y = (Y)");
 
         btnMode.setText("change-mode");
         btnMode.addActionListener(new java.awt.event.ActionListener() {
@@ -334,18 +334,16 @@ public class Editor extends javax.swing.JFrame {
                         .addGap(18, 18, 18))
                     .addGroup(pnWindowPanelLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
-                        .addComponent(jLabel6)
+                        .addComponent(lbDimensions)
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel7)
+                        .addComponent(lbX)
                         .addGroup(pnWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnWindowPanelLayout.createSequentialGroup()
                                 .addGap(68, 68, 68)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel8))
                             .addGroup(pnWindowPanelLayout.createSequentialGroup()
                                 .addGap(57, 57, 57)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(lbY)))
                         .addGap(433, 433, 433)
                         .addComponent(btnMode)
                         .addGap(60, 60, 60)))
@@ -364,9 +362,9 @@ public class Editor extends javax.swing.JFrame {
                                 .addGap(36, 36, 36))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnWindowPanelLayout.createSequentialGroup()
                                 .addGroup(pnWindowPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbX, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbDimensions, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbY, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnMode))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -521,10 +519,19 @@ public class Editor extends javax.swing.JFrame {
             pnNavBar.setBackground(new Color(35, 38, 39));
             pnWindowPanel.setBackground(new Color(21, 23, 24));
             scrollPanel.setBackground(new Color(242, 242, 242));
+            lbDimensions.setForeground(Color.WHITE);
+            lbLogo.setForeground(Color.WHITE);
+            lbX.setForeground(Color.WHITE);
+            lbY.setForeground(Color.WHITE);
         } else{
-            pnNavBar.setBackground(new Color(35, 38, 39));
-            pnWindowPanel.setBackground(new Color(21, 23, 24));
+            pnNavBar.setBackground(new Color(242, 242, 242));
+            pnWindowPanel.setBackground(new Color(242, 242, 242));
             scrollPanel.setBackground(new Color(242, 242, 242));
+            lbDimensions.setForeground(Color.BLACK);
+            lbLogo.setForeground(Color.BLACK);
+            lbX.setForeground(Color.BLACK);
+            lbY.setForeground(Color.BLACK);
+
         }
         isChangingToDarkMode = !isChangingToDarkMode;
     }//GEN-LAST:event_btnModeActionPerformed
@@ -565,12 +572,12 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbDimensions;
+    private javax.swing.JLabel lbLogo;
+    private javax.swing.JLabel lbX;
+    private javax.swing.JLabel lbY;
     private javax.swing.JPanel pnNavBar;
     private javax.swing.JPanel pnWindowPanel;
     private javax.swing.JSpinner rotatingDegreesInCelcius;
