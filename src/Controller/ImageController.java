@@ -15,10 +15,6 @@ public class ImageController {
     private String error;
     private boolean isError;
 
-    private ImageInputStream imageInputStream;
-    private Iterator<ImageReader> iterator;
-    private ImageReader imageReader;
-
     public ImageController() {
         this.error = null;
         this.isError = false;
@@ -51,11 +47,11 @@ public class ImageController {
     }
 
     public BufferedImage scale(BufferedImage originalImage, int width, int height) {
-        BufferedImage resizedImage = new BufferedImage(width, height, originalImage.getType());
-        Graphics2D graphics2D = resizedImage.createGraphics();
+        BufferedImage scaledImage = new BufferedImage(width, height, originalImage.getType());
+        Graphics2D graphics2D = scaledImage.createGraphics();
         graphics2D.drawImage(originalImage, 0, 0, width, height, null);
         graphics2D.dispose();
-        return resizedImage;
+        return scaledImage;
     }
 
     public BufferedImage translate(BufferedImage originalImage, int x, int y, int width, int height) {

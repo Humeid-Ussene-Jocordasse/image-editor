@@ -46,14 +46,14 @@ public class Editor extends javax.swing.JFrame {
         fileUploaded = null;
         imageUploaded = null;
 
-        cropWidthHolder = new PlaceHolder(cropWidth, Color.GRAY, Color.BLACK, "Width", false, Font.SANS_SERIF, 13);
-        cropHeigthHolder = new PlaceHolder(cropHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
-        cropXHolder = new PlaceHolder(cropX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
-        cropYHolder = new PlaceHolder(cropY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
-        scaleWidthHolder = new PlaceHolder(scaleWidth, Color.GRAY, Color.BLACK, "Width", false, Font.SANS_SERIF, 13);
-        scaleHeigthHolder = new PlaceHolder(scaleHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
-        translateXHolder = new PlaceHolder(translateX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
-        translateYHolder = new PlaceHolder(translateY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
+        cropWidthHolder = new PlaceHolder(tfCropWidth, Color.GRAY, Color.BLACK, "Width", false, Font.SANS_SERIF, 13);
+        cropHeigthHolder = new PlaceHolder(tfCropHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
+        cropXHolder = new PlaceHolder(tfCropX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
+        cropYHolder = new PlaceHolder(tfCropY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
+        scaleWidthHolder = new PlaceHolder(tfScaleWidth, Color.GRAY, Color.BLACK, "Width", false, Font.SANS_SERIF, 13);
+        scaleHeigthHolder = new PlaceHolder(tfScaleHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
+        translateXHolder = new PlaceHolder(tfTranslateX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
+        translateYHolder = new PlaceHolder(tfTranslateY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
         modeImage = null;
         try {
              modeImage = ImageIO.read( new File("/Users/humeidjocordasse/experiments/dark-theme.png"));
@@ -77,13 +77,13 @@ public class Editor extends javax.swing.JFrame {
         pnWindowPanel = new javax.swing.JPanel();
         pnNavBar = new javax.swing.JPanel();
         btnCrop = new javax.swing.JButton();
-        cropWidth = new javax.swing.JTextField();
-        cropHeigth = new javax.swing.JTextField();
-        cropX = new javax.swing.JTextField();
-        cropY = new javax.swing.JTextField();
+        tfCropWidth = new javax.swing.JTextField();
+        tfCropHeigth = new javax.swing.JTextField();
+        tfCropX = new javax.swing.JTextField();
+        tfCropY = new javax.swing.JTextField();
         btnScale = new javax.swing.JButton();
-        scaleWidth = new javax.swing.JTextField();
-        scaleHeigth = new javax.swing.JTextField();
+        tfScaleWidth = new javax.swing.JTextField();
+        tfScaleHeigth = new javax.swing.JTextField();
         lbMoveImage = new javax.swing.JLabel();
         lbCropImage = new javax.swing.JLabel();
         lbRotateImage = new javax.swing.JLabel();
@@ -91,8 +91,8 @@ public class Editor extends javax.swing.JFrame {
         btnUploadImage = new javax.swing.JButton();
         lbLogo = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
-        translateX = new javax.swing.JTextField();
-        translateY = new javax.swing.JTextField();
+        tfTranslateX = new javax.swing.JTextField();
+        tfTranslateY = new javax.swing.JTextField();
         btnTranslate = new javax.swing.JButton();
         lbScalateImage = new javax.swing.JLabel();
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
@@ -120,13 +120,13 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        cropWidth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCropWidth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        cropHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCropHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        cropX.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCropX.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        cropY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfCropY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         btnScale.setText("Escalar");
         btnScale.addActionListener(new java.awt.event.ActionListener() {
@@ -135,9 +135,9 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        scaleWidth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfScaleWidth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        scaleHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfScaleHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         lbMoveImage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbMoveImage.setForeground(new java.awt.Color(242, 242, 242));
@@ -187,9 +187,14 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        translateX.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTranslateX.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        translateY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTranslateY.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfTranslateY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfTranslateYActionPerformed(evt);
+            }
+        });
 
         btnTranslate.setText("Mover Imagem");
         btnTranslate.addActionListener(new java.awt.event.ActionListener() {
@@ -225,25 +230,25 @@ public class Editor extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnNavBarLayout.createSequentialGroup()
-                                .addComponent(cropX, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfCropX, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cropY))
+                                .addComponent(tfCropY))
                             .addGroup(pnNavBarLayout.createSequentialGroup()
                                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnNavBarLayout.createSequentialGroup()
-                                        .addComponent(cropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfCropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(tfCropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnNavBarLayout.createSequentialGroup()
-                                        .addComponent(scaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tfScaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(scaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(tfScaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 2, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnNavBarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(translateX, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfTranslateX, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(translateY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfTranslateY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30))
             .addGroup(pnNavBarLayout.createSequentialGroup()
                 .addGap(65, 65, 65)
@@ -267,28 +272,28 @@ public class Editor extends javax.swing.JFrame {
                 .addComponent(lbCropImage, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCropWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cropX)
-                    .addComponent(cropY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfCropX)
+                    .addComponent(tfCropY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrop, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(lbScalateImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfScaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfScaleHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnScale, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(lbMoveImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(translateX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(translateY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTranslateX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfTranslateY, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTranslate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
@@ -385,11 +390,11 @@ public class Editor extends javax.swing.JFrame {
             return;
         }
 
-        if (translateX.getText().equals(translateXHolder.getTextoHolder()) || translateY.getText().equals(translateYHolder.getTextoHolder())) {
+        if (tfTranslateX.getText().equals(translateXHolder.getTextoHolder()) || tfTranslateY.getText().equals(translateYHolder.getTextoHolder())) {
             return;
         }
 
-        if (translateX.getText().isEmpty() || translateY.getText().isEmpty()) {
+        if (tfTranslateX.getText().isEmpty() || tfTranslateY.getText().isEmpty()) {
             return;
         }
 
@@ -467,20 +472,23 @@ public class Editor extends javax.swing.JFrame {
             return;
         }
 
-        if (scaleWidth.getText().equals(scaleWidthHolder.getTextoHolder()) || scaleHeigth.getText().equals(scaleHeigthHolder.getTextoHolder())) {
+        if (tfScaleWidth.getText().equals(scaleWidthHolder.getTextoHolder()) || tfScaleHeigth.getText().equals(scaleHeigthHolder.getTextoHolder())) {
             return;
         }
 
-        if (scaleWidth.getText().isEmpty() || scaleHeigth.getText().isEmpty()) {
+        if (tfScaleWidth.getText().isEmpty() || tfScaleHeigth.getText().isEmpty()) {
             return;
         }
 
         imageUploaded = imageController.scale(
             imageUploaded,
-            Integer.parseInt(scaleWidth.getText()),
-            Integer.parseInt(scaleHeigth.getText())
+            Integer.parseInt(tfScaleWidth.getText()),
+            Integer.parseInt(tfScaleHeigth.getText())
         );
-//        currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
+        
+        lbY.setText("y = " + imageUploaded.getHeight());
+        lbX.setText("x = " + imageUploaded.getWidth());
+        
         ImageIcon icon = new ImageIcon(imageUploaded);
         imageLabel.setIcon(icon);
     }//GEN-LAST:event_btnScaleActionPerformed
@@ -490,26 +498,26 @@ public class Editor extends javax.swing.JFrame {
             return;
         }
 
-        if (cropX.getText().equals(cropXHolder.getTextoHolder())
-            || cropY.getText().equals(cropYHolder.getTextoHolder())
-            || cropWidth.getText().equals(cropWidthHolder.getTextoHolder())
-            || cropHeigth.getText().equals(cropHeigthHolder.getTextoHolder())) {
+        if (tfCropX.getText().equals(cropXHolder.getTextoHolder())
+            || tfCropY.getText().equals(cropYHolder.getTextoHolder())
+            || tfCropWidth.getText().equals(cropWidthHolder.getTextoHolder())
+            || tfCropHeigth.getText().equals(cropHeigthHolder.getTextoHolder())) {
             return;
         }
 
-        if (cropX.getText().isEmpty()
-            || cropY.getText().isEmpty()
-            || cropWidth.getText().isEmpty()
-            || cropHeigth.getText().isEmpty()) {
+        if (tfCropX.getText().isEmpty()
+            || tfCropY.getText().isEmpty()
+            || tfCropWidth.getText().isEmpty()
+            || tfCropHeigth.getText().isEmpty()) {
             return;
         }
 
         imageUploaded = imageController.crop(
             imageUploaded,
-            Integer.parseInt(cropX.getText()),
-            Integer.parseInt(cropY.getText()),
-            Integer.parseInt(cropWidth.getText()),
-            Integer.parseInt(cropHeigth.getText())
+            Integer.parseInt(tfCropX.getText()),
+            Integer.parseInt(tfCropY.getText()),
+            Integer.parseInt(tfCropWidth.getText()),
+            Integer.parseInt(tfCropHeigth.getText())
         );
 
 //        currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
@@ -548,6 +556,10 @@ public class Editor extends javax.swing.JFrame {
         isChangingToDarkMode = !isChangingToDarkMode;
     }//GEN-LAST:event_btnModeActionPerformed
 
+    private void tfTranslateYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTranslateYActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTranslateYActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -576,10 +588,6 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JButton btnScale;
     private javax.swing.JButton btnTranslate;
     private javax.swing.JButton btnUploadImage;
-    private javax.swing.JTextField cropHeigth;
-    private javax.swing.JTextField cropWidth;
-    private javax.swing.JTextField cropX;
-    private javax.swing.JTextField cropY;
     private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lbCropImage;
@@ -593,10 +601,14 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JPanel pnNavBar;
     private javax.swing.JPanel pnWindowPanel;
     private javax.swing.JSpinner rotatingDegreesInCelcius;
-    private javax.swing.JTextField scaleHeigth;
-    private javax.swing.JTextField scaleWidth;
     private javax.swing.JScrollPane scrollPanel;
-    private javax.swing.JTextField translateX;
-    private javax.swing.JTextField translateY;
+    private javax.swing.JTextField tfCropHeigth;
+    private javax.swing.JTextField tfCropWidth;
+    private javax.swing.JTextField tfCropX;
+    private javax.swing.JTextField tfCropY;
+    private javax.swing.JTextField tfScaleHeigth;
+    private javax.swing.JTextField tfScaleWidth;
+    private javax.swing.JTextField tfTranslateX;
+    private javax.swing.JTextField tfTranslateY;
     // End of variables declaration//GEN-END:variables
 }

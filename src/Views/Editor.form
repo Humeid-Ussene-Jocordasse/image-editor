@@ -133,21 +133,21 @@
                               <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="cropX" min="-2" pref="81" max="-2" attributes="0"/>
+                                      <Component id="tfCropX" min="-2" pref="81" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cropY" max="32767" attributes="0"/>
+                                      <Component id="tfCropY" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="cropWidth" min="-2" pref="81" max="-2" attributes="0"/>
+                                              <Component id="tfCropWidth" min="-2" pref="81" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="cropHeigth" min="-2" pref="79" max="-2" attributes="0"/>
+                                              <Component id="tfCropHeigth" min="-2" pref="79" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="scaleWidth" min="-2" pref="82" max="-2" attributes="0"/>
+                                              <Component id="tfScaleWidth" min="-2" pref="82" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="scaleHeigth" min="-2" pref="78" max="-2" attributes="0"/>
+                                              <Component id="tfScaleHeigth" min="-2" pref="78" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
@@ -156,9 +156,9 @@
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="translateX" min="-2" pref="82" max="-2" attributes="0"/>
+                              <Component id="tfTranslateX" min="-2" pref="82" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="translateY" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="tfTranslateY" min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -187,13 +187,13 @@
                       <Component id="lbCropImage" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cropHeigth" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="cropWidth" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="tfCropHeigth" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="tfCropWidth" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="cropX" max="32767" attributes="0"/>
-                          <Component id="cropY" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="tfCropX" max="32767" attributes="0"/>
+                          <Component id="tfCropY" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCrop" min="-2" pref="32" max="-2" attributes="0"/>
@@ -201,8 +201,8 @@
                       <Component id="lbScalateImage" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="scaleWidth" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="scaleHeigth" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="tfScaleWidth" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="tfScaleHeigth" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnScale" min="-2" pref="31" max="-2" attributes="0"/>
@@ -210,8 +210,8 @@
                       <Component id="lbMoveImage" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="translateX" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="translateY" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="tfTranslateX" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="tfTranslateY" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnTranslate" min="-2" pref="31" max="-2" attributes="0"/>
@@ -231,22 +231,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCropActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="cropWidth">
+            <Component class="javax.swing.JTextField" name="tfCropWidth">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="cropHeigth">
+            <Component class="javax.swing.JTextField" name="tfCropHeigth">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="cropX">
+            <Component class="javax.swing.JTextField" name="tfCropX">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="cropY">
+            <Component class="javax.swing.JTextField" name="tfCropY">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
@@ -259,12 +259,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnScaleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="scaleWidth">
+            <Component class="javax.swing.JTextField" name="tfScaleWidth">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="scaleHeigth">
+            <Component class="javax.swing.JTextField" name="tfScaleHeigth">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
@@ -360,15 +360,18 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="translateX">
+            <Component class="javax.swing.JTextField" name="tfTranslateX">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="translateY">
+            <Component class="javax.swing.JTextField" name="tfTranslateY">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTranslateYActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnTranslate">
               <Properties>

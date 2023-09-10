@@ -5,19 +5,20 @@
 - Rotate customizable and independent angles; (done)
 - Add dark mode/ Light Mode (done)
 - Mostrar dimensoes da imagem (done)
+- Change Variables and improve code (done)
+- Rotate Image, (done)
+- Escalate
+  - Add zooming loader (Deprecated)
 
 
-- Change Variables and improve code
+- Move,
+  - Rotate outside the pane
+  - Add moving with mouse
 
-- Add image cropping with mouse
-- Improve Translate Image (Rename to Move Image)
+- Crop
+   - Add image cropping with mouse
 
-- Manipulating Image:
-  - Rotate, (done)
-  - Move, 
-    - Rotate outside the pane
-  - Escalate,
-  - Crop
+
 
 - Add drop image here (not that much needed) (Deprecated)
 - Change the project IDE to Intellij (Deprecated)
