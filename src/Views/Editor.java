@@ -84,9 +84,9 @@ public class Editor extends javax.swing.JFrame {
         btnScale = new javax.swing.JButton();
         scaleWidth = new javax.swing.JTextField();
         scaleHeigth = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbMoveImage = new javax.swing.JLabel();
+        lbCropImage = new javax.swing.JLabel();
+        lbRotateImage = new javax.swing.JLabel();
         btnRotate = new javax.swing.JButton();
         btnUploadImage = new javax.swing.JButton();
         lbLogo = new javax.swing.JLabel();
@@ -94,7 +94,7 @@ public class Editor extends javax.swing.JFrame {
         translateX = new javax.swing.JTextField();
         translateY = new javax.swing.JTextField();
         btnTranslate = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lbScalateImage = new javax.swing.JLabel();
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
         scrollPanel = new javax.swing.JScrollPane();
         imageLabel = new javax.swing.JLabel();
@@ -139,21 +139,21 @@ public class Editor extends javax.swing.JFrame {
 
         scaleHeigth.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Mover Imagem");
+        lbMoveImage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbMoveImage.setForeground(new java.awt.Color(242, 242, 242));
+        lbMoveImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMoveImage.setText("Mover Imagem");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Cortar Imagem");
+        lbCropImage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbCropImage.setForeground(new java.awt.Color(242, 242, 242));
+        lbCropImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbCropImage.setText("Cortar Imagem");
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Girar Imagem");
+        lbRotateImage.setBackground(new java.awt.Color(255, 255, 255));
+        lbRotateImage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbRotateImage.setForeground(new java.awt.Color(242, 242, 242));
+        lbRotateImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbRotateImage.setText("Girar Imagem");
 
         btnRotate.setText("Girar");
         btnRotate.addActionListener(new java.awt.event.ActionListener() {
@@ -198,10 +198,10 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Escalar Imagem");
+        lbScalateImage.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lbScalateImage.setForeground(new java.awt.Color(242, 242, 242));
+        lbScalateImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbScalateImage.setText("Escalar Imagem");
 
         javax.swing.GroupLayout pnNavBarLayout = new javax.swing.GroupLayout(pnNavBar);
         pnNavBar.setLayout(pnNavBarLayout);
@@ -211,15 +211,15 @@ public class Editor extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTranslate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbRotateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnScale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbMoveImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbCropImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnUploadImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbScalateImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCrop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnNavBarLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -258,13 +258,13 @@ public class Editor extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(btnUploadImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbRotateImage, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(rotatingDegreesInCelcius, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRotate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbCropImage, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cropHeigth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,7 +276,7 @@ public class Editor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrop, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbScalateImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(scaleWidth, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +284,7 @@ public class Editor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnScale, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lbMoveImage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnNavBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(translateX, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,6 +296,9 @@ public class Editor extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
+        scrollPanel.setBackground(new java.awt.Color(30, 31, 31));
+
+        imageLabel.setBackground(new java.awt.Color(30, 31, 31));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scrollPanel.setViewportView(imageLabel);
 
@@ -442,7 +445,8 @@ public class Editor extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
             }
-//            currentHeight.setText("Height(" + imageUploaded.getHeight() + ")");
+            lbY.setText("y = " + imageUploaded.getHeight());
+            lbX.setText("x = " + imageUploaded.getWidth());
             ImageIcon icon = new ImageIcon(imageUploaded);
             imageLabel.setIcon(icon);
 
@@ -523,6 +527,11 @@ public class Editor extends javax.swing.JFrame {
             lbLogo.setForeground(Color.WHITE);
             lbX.setForeground(Color.WHITE);
             lbY.setForeground(Color.WHITE);
+            lbMoveImage.setForeground(Color.WHITE);
+            lbScalateImage.setForeground(Color.WHITE);
+            lbRotateImage.setForeground(Color.WHITE);
+            lbCropImage.setForeground(Color.WHITE);
+            
         } else{
             pnNavBar.setBackground(new Color(242, 242, 242));
             pnWindowPanel.setBackground(new Color(242, 242, 242));
@@ -531,7 +540,10 @@ public class Editor extends javax.swing.JFrame {
             lbLogo.setForeground(Color.BLACK);
             lbX.setForeground(Color.BLACK);
             lbY.setForeground(Color.BLACK);
-
+            lbMoveImage.setForeground(Color.BLACK);
+            lbScalateImage.setForeground(Color.BLACK);
+            lbRotateImage.setForeground(Color.BLACK);
+            lbCropImage.setForeground(Color.BLACK);
         }
         isChangingToDarkMode = !isChangingToDarkMode;
     }//GEN-LAST:event_btnModeActionPerformed
@@ -569,13 +581,13 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JTextField cropX;
     private javax.swing.JTextField cropY;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lbCropImage;
     private javax.swing.JLabel lbDimensions;
     private javax.swing.JLabel lbLogo;
+    private javax.swing.JLabel lbMoveImage;
+    private javax.swing.JLabel lbRotateImage;
+    private javax.swing.JLabel lbScalateImage;
     private javax.swing.JLabel lbX;
     private javax.swing.JLabel lbY;
     private javax.swing.JPanel pnNavBar;

@@ -4,9 +4,9 @@
   - Change the navigation bar to the right and use Adobe UI (done)
 - Rotate customizable and independent angles; (done)
 - Add dark mode/ Light Mode (done)
+- Mostrar dimensoes da imagem (done)
 
 
-- Mostrar dimensoes da imagem
 - Change Variables and improve code
 
 - Add image cropping with mouse
