@@ -4,7 +4,6 @@ import Controller.ImageController;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +15,6 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JScrollPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
@@ -26,6 +24,7 @@ public class Editor extends javax.swing.JFrame {
     ImageController imageController;
     File fileUploaded;
     BufferedImage imageUploaded;
+     BufferedImage modeImage ;
     PlaceHolder cropHeigthHolder;
     PlaceHolder cropWidthHolder;
     PlaceHolder cropXHolder;
@@ -34,6 +33,7 @@ public class Editor extends javax.swing.JFrame {
     PlaceHolder scaleHeigthHolder;
     PlaceHolder translateXHolder;
     PlaceHolder translateYHolder;
+    boolean darkMode = true;
     
     SpinnerNumberModel spinnerModel = new SpinnerNumberModel(0, -360, 360, 1); 
 
@@ -54,6 +54,15 @@ public class Editor extends javax.swing.JFrame {
         scaleHeigthHolder = new PlaceHolder(scaleHeigth, Color.GRAY, Color.BLACK, "Heigth", false, Font.SANS_SERIF, 13);
         translateXHolder = new PlaceHolder(translateX, Color.GRAY, Color.BLACK, "X Value", false, Font.SANS_SERIF, 13);
         translateYHolder = new PlaceHolder(translateY, Color.GRAY, Color.BLACK, "Y Value", false, Font.SANS_SERIF, 13);
+        modeImage = null;
+        try {
+             modeImage = ImageIO.read( new File("/Users/humeidjocordasse/experiments/dark-theme.png"));
+
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               ImageIcon icon = new ImageIcon(modeImage);
+//               btnMode.setIcon(icon);
     }
 
     /**
@@ -89,6 +98,11 @@ public class Editor extends javax.swing.JFrame {
         rotatingDegreesInCelcius = new javax.swing.JSpinner(spinnerModel);
         scrollPanel = new javax.swing.JScrollPane();
         imageLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        btnMode = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(21, 23, 24));
@@ -156,7 +170,7 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Picassadas");
@@ -283,29 +297,58 @@ public class Editor extends javax.swing.JFrame {
         );
 
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                imageLabelMouseDragged(evt);
-            }
-        });
-        imageLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                imageLabelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                imageLabelMouseReleased(evt);
-            }
-        });
         scrollPanel.setViewportView(imageLabel);
+
+        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Dimensões:");
+
+        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("x = (X)");
+
+        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("x = (X)");
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("y = (Y)");
+
+        btnMode.setText("change-mode");
+        btnMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 873, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel6)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel7)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(433, 433, 433)
+                        .addComponent(btnMode)
+                        .addGap(60, 60, 60)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -313,12 +356,22 @@ public class Editor extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnMode))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
         );
 
         getContentPane().add(jPanel2);
@@ -462,63 +515,16 @@ public class Editor extends javax.swing.JFrame {
         imageLabel.setIcon(icon);
     }//GEN-LAST:event_btnCropActionPerformed
 
-    private void imageLabelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseReleased
-        // TODO add your handling code here:
-        System.out.println("Mouse_Released");
-        endX = evt.getX();
-        endY = evt.getY();
-        isDragging = false;
-
-        // Calculate the crop region and create a cropped image
-        int width = Math.abs(endX - startX);
-        int height = Math.abs(endY - startY);
-        int x = Math.min(startX, endX);
-        int y = Math.min(startY, endY);
-
-        if (width > 0 && height > 0) {
-            //                        croppedImage = originalImage.get  Subimage(x, y, width, height);
-            repaint(); // Repaint the panel to display the cropped region
+    private void btnModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModeActionPerformed
+        // TODO add your handling code here
+        if (darkMode){
+            System.out.println("Dark");
+        } else{
+            System.out.println("Light");
         }
+        darkMode = !darkMode;
+    }//GEN-LAST:event_btnModeActionPerformed
 
-    }//GEN-LAST:event_imageLabelMouseReleased
-
-    private void imageLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMousePressed
-        // TODO add your handling code here:
-        System.out.println("Image_Pressed");
-        startX = evt.getX();
-        startY = evt.getY();
-        isDragging = true;
-    }//GEN-LAST:event_imageLabelMousePressed
-
-    private void imageLabelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageLabelMouseDragged
-        // TODO add your handling code here:
-        System.out.println("Image_Dragged");
-        if (isDragging) {
-            endX = evt.getX();
-            endY = evt.getY();
-            imageLabel.paint(paintComponent(imageLabel.getGraphics()));
-
-        }
-    }//GEN-LAST:event_imageLabelMouseDragged
-
-    
-        private int startX, startY, endX, endY;
-        private boolean isDragging = false;
-        
-    
-            protected Graphics paintComponent(Graphics g) {
-                if (isDragging) {
-                    // Draw a selection rectangle while dragging
-                    int width = Math.abs(endX - startX);
-                    int height = Math.abs(endY - startY);
-                    int x = Math.min(startX, endX);
-                    int y = Math.min(startY, endY);
-                    g.setColor(Color.RED);
-                    g.drawRect(x, y, width, height);
-                  
-                } 
-                return g;
-        }
 
     /**
      * @param args the command line arguments
@@ -541,6 +547,7 @@ public class Editor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrop;
+    private javax.swing.JToggleButton btnMode;
     private javax.swing.JButton btnRotate;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnScale;
@@ -556,6 +563,10 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSpinner rotatingDegreesInCelcius;
