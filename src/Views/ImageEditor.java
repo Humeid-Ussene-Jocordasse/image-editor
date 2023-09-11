@@ -4,6 +4,8 @@ import Controller.ImageManipulator;
 import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -608,7 +610,7 @@ public class ImageEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_imageLabelMouseDragged
 
     private void btnDragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDragActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnDragActionPerformed
 
 
