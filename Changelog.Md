@@ -9,7 +9,7 @@
 - Rotate Image, (done)
 - Escalate (done)
   - Add zooming loader (Deprecated)
-- Move (Intermittent) 'pn;nnppn '
+- Move (Intermittent)
   - Rotate outside the pane (not neeeded)
   - Add moving with mouse (done)
 
